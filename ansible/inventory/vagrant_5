@@ -23,5 +23,5 @@ workers
 remote_user=vagrant
 spark_user=spark
 spark_user_home=/home/spark
-spark_executor_memory=1g
-spark_driver_memory=1g
+spark_executor_memory=512m
+spark_driver_memory=512m
