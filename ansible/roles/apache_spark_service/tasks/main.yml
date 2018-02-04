@@ -1,0 +1,27 @@
+---
+
+- name: see if /usr/bin/systemctl exists
+  stat: path=/usr/bin/systemctl
+  register: spark_systemctl
+
+- name: fail if systemctl is not installed
+  fail:
+    msg: systemctl is not installed on the target system
+  when: not spark_systemctl.stat.exists
+
+- name: install systemd unit file for spark service
+  template:
+    src: spark.service.j2
+    dest: /etc/systemd/system/spark.service
+    mode: 0644
+  register: service_file
+
+- name: daemon-reload for systemd
+  shell: systemctl daemon-reload
+  when: service_file.changed
+
+- name: restart spark service
+  service:
+    name: spark
+    state: restarted
+    enabled: yes

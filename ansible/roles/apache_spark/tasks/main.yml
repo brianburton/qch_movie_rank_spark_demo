@@ -1,0 +1,85 @@
+---
+
+- name: create spark group
+  group:
+    name: "{{spark_user}}"
+    state: present
+
+- name: create spark user
+  user:
+    name: "{{spark_user}}"
+    home: "{{spark_user_home}}"
+    group: "{{spark_user}}"
+    comment: "Apache Spark"
+    state: present
+    generate_ssh_key: "{{is_master is defined and is_master}}"
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/id_rsa
+
+- name: ensure directories exist
+  file:
+    path: "{{item}}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  with_items:
+    - /opt
+    - /opt/install
+    - /opt/downloads
+
+- name: download the tar file
+  get_url:
+    url: http://apache.cs.utah.edu/spark/spark-2.2.0/spark-2.2.0-bin-hadoop2.7.tgz
+    dest: /opt/downloads/spark-2.2.0-bin-hadoop2.7.tar.gz
+    checksum: md5:1715B661BDF33B40C98B3DAA7837F690
+
+
+- name: unpack the tarball
+  unarchive:
+    remote_src: yes
+    src: /opt/downloads/spark-2.2.0-bin-hadoop2.7.tar.gz
+    dest: /opt/install
+    creates: /opt/install/spark-2.2.0-bin-hadoop2.7/bin/load-spark-env.cmd
+    owner: root
+    group: root
+
+- name: symlink the spark directory
+  file:
+    src: /opt/install/spark-2.2.0-bin-hadoop2.7
+    dest: /opt/spark
+    state: link
+
+- name: add default environment variables for spark
+  copy:
+    src: spark.sh
+    dest: /etc/profile.d/spark.sh
+
+- name: add worker config file
+  template:
+    src: slaves.j2
+    dest: /opt/spark/conf/slaves
+
+- name: add environment config file
+  template:
+    src: spark-env.sh.j2
+    dest: /opt/spark/conf/spark-env.sh
+
+- name: add defaults config file
+  template:
+    src: spark-defaults.conf.j2
+    dest: /opt/spark/conf/spark-defaults.conf
+
+- include_tasks: ssh_worker.yml
+  when: is_worker is defined and is_worker
+
+- name: add spark runtime directories writable by user
+  file:
+    path: "{{item}}"
+    state: directory
+    mode: 0755
+    owner: "{{spark_user}}"
+    group: "{{spark_user}}"
+  with_items:
+    - /opt/spark/logs
+    - /opt/spark/work

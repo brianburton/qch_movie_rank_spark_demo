@@ -1,0 +1,24 @@
+# install spark
+
+- hosts: master
+  remote_user: "{{ remote_user }}"
+  become: yes
+  serial: 1
+  roles:
+  - openjdk
+  - apache_spark
+
+- hosts: workers
+  remote_user: "{{ remote_user }}"
+  become: yes
+  serial: 5
+  roles:
+  - openjdk
+  - apache_spark
+
+- hosts: master
+  remote_user: "{{ remote_user }}"
+  become: yes
+  serial: 1
+  roles:
+  - apache_spark_service

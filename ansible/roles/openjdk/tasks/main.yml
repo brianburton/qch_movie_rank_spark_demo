@@ -1,0 +1,4 @@
+---
+
+- name: ensure java-1.8.0-openjdk-devel is installed
+  yum: name=java-1.8.0-openjdk-devel state=installed
