@@ -10,7 +10,7 @@
     <description>
         Simple spark demo computing movie recommendations.
     </description>
-    <!-- <url>https://github.com/brianburton/java-immutable-collections</url> -->
+    <url>https://github.com/brianburton/qch_movie_rank_spark_demo</url>
 
     <licenses>
         <license>
@@ -42,17 +42,17 @@
         </developer>
     </developers>
 
-    <!-- <issueManagement>
+    <issueManagement>
         <system>GitHub Issues</system>
-        <url>https://github.com/brianburton/java-immutable-collections/issues</url>
-    </issueManagement> -->
+        <url>https://github.com/brianburton/qch_movie_rank_spark_demo/issues</url>
+    </issueManagement>
 
-    <!-- <scm>
-        <connection>scm:git:git://github.com/brianburton/java-immutable-collections.git</connection>
-        <developerConnection>scm:git:git@github.com:brianburton/java-immutable-collections.git</developerConnection>
+    <scm>
+        <connection>scm:git:git://github.com/brianburton/qch_movie_rank_spark_demo.git</connection>
+        <developerConnection>scm:git:git@github.com:brianburton/qch_movie_rank_spark_demo.git</developerConnection>
         <tag>HEAD</tag>
         <url>https://github.com/brianburton/java-immutable-collections</url>
-    </scm> -->
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -179,7 +179,7 @@
                     <executable>java</executable>
                     <arguments>
                         <argument>-classpath</argument>
-                        <classpath />
+                        <classpath/>
                         <argument>com.burton_computer.qch.movie_rank_spark_demo.FasterSparkDemo</argument>
                     </arguments>
                 </configuration>
