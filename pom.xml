@@ -171,20 +171,19 @@
                     <argLine>-Xmx192m</argLine>
                 </configuration>
             </plugin>
-            <!-- <plugin>
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.2.1</version>
                 <configuration>
                     <executable>java</executable>
-                    <classpathScope>test</classpathScope>
                     <arguments>
                         <argument>-classpath</argument>
                         <classpath />
-                        <argument>org.javimmutable.collections.stress_test.StressTestLoop</argument>
+                        <argument>com.burton_computer.qch.movie_rank_spark_demo.FasterSparkDemo</argument>
                     </arguments>
                 </configuration>
-            </plugin> -->
+            </plugin>
         </plugins>
     </build>
     <reporting>
