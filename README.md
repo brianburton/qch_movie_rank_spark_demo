@@ -118,6 +118,7 @@ This project was created for a presentation at the 2018-02-03 Queen City Hacks m
 - Input
     - list of all movies
     - for each movie a list of 5 features in rank order
+        - for purposes of demo actually used 500 features per movie instead of 5
 - Output
     - list of all movies
     - for each movie a list of all recommended movies with associated scores
@@ -153,13 +154,13 @@ This project was created for a presentation at the 2018-02-03 Queen City Hacks m
             - <E, [score(E,D)]>
             - <A, [score(A,E)]>
             - <E, [score(E,A)]>
-   - reduce by key to minimal set of pairs
+    - reduce by key to minimal set of pairs
         - reduce takes union of the 5 sets for each key movie
             - <A, [score(A,D),score(A,E)]>
             - <D, [score(D,A),score(D,E)]>
             - <E, [score(E,A),score(E,D)]>
         - use a set that sorts its members by score
-
+    
 ### Links
 
 - http://192.168.84.1:4040/stages/
