@@ -127,22 +127,6 @@ public class FasterSparkDemo
         }
     }
 
-    private static Tuple2<Movie, MovieScore> computeScoreForPair(Tuple2<Movie, Movie> tuple)
-    {
-        Movie first = tuple._1();
-        Movie related = tuple._2();
-        return Tuple2.apply(first, first.computeScoreFor(related));
-    }
-
-    private static JImmutableList<Tuple2<Movie, Movie>> explodeMovieSets(Tuple2<Movie, JImmutableSet<Movie>> tuple)
-    {
-        Movie first = tuple._1();
-        JImmutableSet<Movie> relatedMovies = tuple._2();
-        return relatedMovies.stream()
-            .map(related -> Tuple2.apply(first, related))
-            .collect(JImmutables.<Tuple2<Movie, Movie>>list().listCollector());
-    }
-
     private static JImmutableList<Tuple2<Movie, JImmutableSet<Movie>>> flipFeatureSet(JImmutableSet<Movie> movies)
     {
         return movies.stream()
