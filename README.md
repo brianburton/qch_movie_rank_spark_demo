@@ -124,7 +124,7 @@ This project was created for a presentation at the 2018-02-03 Queen City Hacks m
     - list of all movies
     - for each movie a list of all recommended movies with associated scores
 - Steps
-    - flapMap input Movies into pairs
+    - flatMap input Movies into pairs
         - key is feature
         - value is movie
     - aggregate the pairs
