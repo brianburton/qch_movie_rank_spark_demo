@@ -7,6 +7,7 @@ This project was created for a presentation at the 2018-02-03 Queen City Hacks m
 - Distributed computation platform
     - https://i0.wp.com/www.crackinghadoop.com/wp-content/uploads/2015/11/sparkEco.png?resize=859%2C526
     - http://image.slidesharecdn.com/sparkarchitecture-jdkievv04-151107124046-lva1-app6892/95/apache-spark-architecture-44-638.jpg?cb=1446900275
+    - https://databricks.com/blog/2016/07/14/a-tale-of-three-apache-spark-apis-rdds-dataframes-and-datasets.html
 - Breaks computations into stages
 - Operates on collections called Resilient Distributed Datasets
     - Immutable collection of values
@@ -43,7 +44,7 @@ This project was created for a presentation at the 2018-02-03 Queen City Hacks m
     - Compile program into jar conaining all the code needed by workers
     - Create a spark context and add jar to it
     - trigger the job
-    - Context distributes jar to works, creates initial RDD, triggers stages and tasks
+    - Context distributes jar to workers, creates initial RDD, triggers stages and tasks
 
 ## Demo Algorithm
 
@@ -94,7 +95,7 @@ This project was created for a presentation at the 2018-02-03 Queen City Hacks m
         - FA5 -> FB1 => 15 - 10 - abs(5 - 1) == 1
         - total score is 1 (worst possible score)
         - note that score for B would be much higher
-            - FB1 -> BA5 => 15 - 2 - abs(1 - 5) == 9
+            - FB1 -> FA5 => 15 - 2 - abs(1 - 5) == 9
     - movie A has 5 features in common with movie B
         - FA1 -> FB5 => 15 -  2 - abs(1 - 5) == 9
         - FA2 -> FB4 => 15 -  4 - abs(2 - 4) == 9
